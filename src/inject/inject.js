@@ -1,6 +1,14 @@
 var regex = /"\w+-\d+-\w"/ig;
 var currentUrl = null;
 
+function extractDatabaseFromUrl(url) {
+    var matches = url.match(/database=([^&]+)&/gi);
+    if (matches && matches.length > 0) {
+        var match = matches[0];
+        return match.substring('database='.length, match.length);
+    }
+    return '';
+}
 
 function computeLinks() {
     if (document.location.href == currentUrl) return;
@@ -28,7 +36,7 @@ function computeLinks() {
                 panel[0].appendChild(hr);
                 ids.forEach(id => {
                     var a = document.createElement("a");
-                    a.href = `#databases/edit?&database=redi-backend&id=${id}`;
+                    a.href = `#databases/edit?&database=${extractDatabaseFromUrl(currentUrl)}&id=${encodeURIComponent(id)}`;
                     a.innerText = id;
                     var div = document.createElement("div");
                     div.className = "virtualRow";
