@@ -3,6 +3,8 @@ var currentUrl = null;
 
 
 function computeLinks() {
+    if (document.location.href == currentUrl) return;
+    currentUrl = document.location.href;
     var retries = 0;
     var readyStateCheckInterval = setInterval(function () {
         ++retries;
@@ -10,14 +12,10 @@ function computeLinks() {
         if (lines.length > 0 || retries > 50) {
             clearInterval(readyStateCheckInterval);
 
-            // Array.from(lines).map(l => l.innerText).forEach(console.log);
-            var arr = Array.from(lines)
-            // console.log(arr);
-            var texts = arr.map(l => l.innerText);
-            // console.log(texts);
-            var x = ''.substring()
+            var texts = Array.from(lines).map(l => l.innerText);
             var ids = texts.flatMap(t => t.match(regex)).filter(Boolean).map(id => id.substring(1, id.length - 1));
-            console.log(ids);
+
+            if (ids.length === 0) return;
 
             var panel = document.getElementById("right-options-panel");
             if (panel) panel = panel.getElementsByClassName("panel-body");
@@ -45,8 +43,7 @@ function computeLinks() {
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         // listen for messages sent from background.js
-        if (request.message === 'recompute' && document.location.href != currentUrl) {
-            currentUrl = document.location.href;
+        if (request.message === 'recompute') {
             computeLinks();
         }
     });
