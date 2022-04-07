@@ -1,24 +1,23 @@
 {
   "name": "RavenDB link extension",
-  "version": "0.0.2",
+  "version": "1.0",
   "manifest_version": 2,
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "background": {
-    "scripts":["src/background.js"]
-  },
   "content_scripts": [
     {
       "matches": [
-        "http://*/studio/index.html*"
+        "http://*/studio/index.html*",
+        "https://*/studio/index.html*"
       ],
       "js": [
         "src/inject/underscore.js",
         "src/inject/inject.js"
-      ]
+      ],
+      "run_at": "document_end"
     }
   ]
 }
