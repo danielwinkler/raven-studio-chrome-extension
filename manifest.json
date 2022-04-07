@@ -1,6 +1,7 @@
 {
   "name": "RavenDB link extension",
   "version": "1.0",
+  "description": "An extension to support other document IDs in RavenDB studio to be recognized as links",
   "manifest_version": 2,
   "icons": {
     "16": "icons/icon16.png",
