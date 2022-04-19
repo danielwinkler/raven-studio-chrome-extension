@@ -4,7 +4,7 @@
 
 The extension is available for
 
-- Chrome (in review)
+- [Chrome](https://chrome.google.com/webstore/detail/ravendb-link-extension/bmkmgfpifcikcdialkononemgddiifbm)
 - [Firefox](https://addons.mozilla.org/en-US/firefox/addon/ravendb-document-links/)
 
 
