@@ -41,12 +41,13 @@ function compute() {
     var ids = texts.flatMap(t => t.match(regex)).filter(Boolean).map(id => id.substring(1, id.length - 1));
 
     if (ids.length === 0) return true;
+    ids = ids.filter((value, index, array) => array.indexOf(value) === index);
 
     var panel = document.getElementById("right-options-panel");
     if (panel) panel = panel.getElementsByClassName("panel-body");
     if (!panel || panel.length == 0) return false;
 
-    if (ids.filter(fresh => handlesIds.indexOf(fresh)==-1).length == 0) return true;
+    if (ids.filter(fresh => handlesIds.indexOf(fresh) == -1).length == 0) return true;
 
     var hdr = document.getElementById("ext-ravendb-link-hdr");
     if (!hdr) {
